@@ -7,49 +7,29 @@
 using namespace std;
 
 int main()
-{
-    //the parts of a fractional number
-    int characteristicValue;
-    int numerator;
-    int denominator;
-
-    //create a c-string, an array of 100 characters (99 plus a null terminating character '\0')
-    const int lengthOfResult = 100;
-    char result[lengthOfResult];
-
-    //test the two conversion functions
-    if(characteristic("123.456", characteristicValue))
+{ 
+    char answer[10];
+    int c1, n1, d1;
+    int c2, n2, d2;
+    
+    c1 = 1;
+    n1 = 1;
+    d1 = 2;
+    
+    c2 = 2;
+    n2 = 2;
+    d2 = 3; 
+    
+    //if the C string could hold at least the characteristic
+    if(add(c1, n1, d1, c2, n2, d2, answer, 10))
     {
-        //123
-        cout<<"The characteristic is "<<characteristicValue<<endl;
+        //display string with answer 4.1666666
+        cout << "worked" << endl;
     }
-    if(mantissa("123.456", numerator, denominator))
+    else
     {
-        //456/1000
-        cout<<"The mantissa is numerator: "<<numerator<<", denominator: "<<denominator<<endl;
+        cout << "error" << endl;
+        //display error message
     }
-
-    //test the math functions
-    if(add(characteristicValue, numerator, denominator, characteristicValue, numerator, denominator, result, lengthOfResult))
-    {
-        //"246.912"
-        cout<<"Result: "<<result<<endl;
-    }
-    if(subtract(characteristicValue, numerator, denominator, characteristicValue, numerator, denominator, result, lengthOfResult))
-    {
-        //"0"
-        cout<<"Result: "<<result<<endl;
-    }
-    if(multiply(characteristicValue, numerator, denominator, characteristicValue, numerator, denominator, result, lengthOfResult))
-    {
-        //"15241.383936"
-        cout<<"Result: "<<result<<endl;
-    }
-    if(divide(characteristicValue, numerator, denominator, characteristicValue, numerator, denominator, result, lengthOfResult))
-    {
-        //"1"
-        cout<<"Result: "<<result<<endl;
-    }
-
     return 0;
 }
