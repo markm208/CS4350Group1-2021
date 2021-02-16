@@ -49,8 +49,14 @@ char intToChar(int numToConvert){ //apparently can't use atoi(). so i had to mak
 
 bool add(int c1, int n1, int d1, int c2, int n2, int d2, char result[], int len)
 {
+        if (d1 == 0 || d2 == 0){
+            return false;
+        }
+
         int improperNumerator1 = (c1 * d1) + n1;
         int improperNumerator2 = (c2 * d2) + n2;
+        
+        
         int commonDenominator = d1 * d2;
 
         improperNumerator1 = improperNumerator1 * (commonDenominator / d1);
@@ -69,11 +75,12 @@ bool add(int c1, int n1, int d1, int c2, int n2, int d2, char result[], int len)
         int mantissaDecimalFormat = summedMantissa * (decimalPrecision / commonDenominator); //this will be zero if previous for loop never looped
         
         int characteristicStart;
+        int reducingMantissa = mantissaDecimalFormat;
         if (mantissaDecimalFormat != 0){
             for (int i = len - 1; i >= count_digit(summedCharacteristic) + 1; i--){ //this places the mantissa in the result string and then adds a decimal point before it
-                result[i] = intToChar(mantissaDecimalFormat % 10);
-                mantissaDecimalFormat = mantissaDecimalFormat / 10;
-                if (mantissaDecimalFormat == 0){
+                result[i] = intToChar(reducingMantissa % 10);
+                reducingMantissa = reducingMantissa / 10;
+                if (reducingMantissa == 0){
                     result[i-1] = '.';
                     characteristicStart = i - 2;
                 }
@@ -87,7 +94,7 @@ bool add(int c1, int n1, int d1, int c2, int n2, int d2, char result[], int len)
             result[i] = intToChar(summedCharacteristic % 10);
             summedCharacteristic = summedCharacteristic / 10;
         }
-        
+
         if (result[len-1] != '0'){ //this deals with infinite repeating decimals
             result[len-1] = '\0';
         }
@@ -117,9 +124,9 @@ bool add(int c1, int n1, int d1, int c2, int n2, int d2, char result[], int len)
     }
 }
 //--
-bool subtract(int c1, int n1, int d1, int c2, int n2, int d2, char result[], int len)
+bool subtract(int c1, int n1, int d1, int c2, int n2, int d2, char result[], int len) //doesnt really handle negatives
 {
-    return true;
+    return add(c1,n1,d1,-c2,-n2,d2,result,len); //subtract the second number passed in from the first number, just used add then reversed the sign of the second number
 }
 //--
 bool multiply(int c1, int n1, int d1, int c2, int n2, int d2, char result[], int len)
