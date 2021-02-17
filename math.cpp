@@ -124,7 +124,7 @@ bool add(int c1, int n1, int d1, int c2, int n2, int d2, char result[], int len)
     }
 }
 //--
-bool subtract(int c1, int n1, int d1, int c2, int n2, int d2, char result[], int len) //doesnt really handle negatives
+bool subtract(int c1, int n1, int d1, int c2, int n2, int d2, char result[], int len) 
 {
     return add(c1,n1,d1,-c2,-n2,d2,result,len); //subtract the second number passed in from the first number, just used add then reversed the sign of the second number
 }
