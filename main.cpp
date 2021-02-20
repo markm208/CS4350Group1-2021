@@ -24,7 +24,6 @@ int main()
     if(add(c1, n1, d1, c2, n2, d2, answer, 10))
     {
         //display string with answer 4.1666666
-        cout << "worked" << endl;
     }
     else
     {
