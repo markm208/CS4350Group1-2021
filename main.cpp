@@ -16,6 +16,7 @@ int main()
     //create a c-string, an array of 100 characters (99 plus a null terminating character '\0')
     const int lengthOfResult = 100;
     char result[lengthOfResult];
+    result[0] = '\0';
 
     //test the two conversion functions
     if(characteristic("123.456", characteristicValue))
