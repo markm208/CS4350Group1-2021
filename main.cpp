@@ -6,7 +6,7 @@
 
 using namespace std;
 
-int main()
+int main() //this main is for debugging because the other functions in the default main arent implemented yet
 { 
     char answer[10];
     int c1, n1, d1;
@@ -23,7 +23,7 @@ int main()
     //if the C string could hold at least the characteristic
     if(add(c1, n1, d1, c2, n2, d2, answer, 10))
     {
-        //display string with answer 4.1666666
+        cout << answer << endl;
     }
     else
     {

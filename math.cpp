@@ -61,6 +61,7 @@ bool add(int c1, int n1, int d1, int c2, int n2, int d2, char result[], int len)
             return false;
         }
 
+
         bool resultIsNegative = false; //stores whether or not number is negative so to allow for addition of - to the beginning of the string
 
         int improperNumerator1 = (c1 * d1) + n1; //turns the first number into an improper fraction
@@ -72,15 +73,16 @@ bool add(int c1, int n1, int d1, int c2, int n2, int d2, char result[], int len)
         improperNumerator1 = improperNumerator1 * (commonDenominator / d1); //converts the improper fraction two a fraction with the common denominator, thus allowing for addition of the two numerators
         improperNumerator2 = improperNumerator2 * (commonDenominator / d2);
 
-        int summedNumerator = improperNumerator1 + improperNumerator2;
+        int summedNumerator = improperNumerator1 + improperNumerator2; //add up the numerators and then split up mantissa and characteristic again, but the two numbers are added together
         int summedCharacteristic = summedNumerator / commonDenominator; 
         long long summedMantissa = summedNumerator % commonDenominator;
 
-        if (summedCharacteristic < 0){ 
+        if (summedNumerator < 0){ 
             resultIsNegative = true;
         }
 
     if (count_digit(summedCharacteristic) < len) { //makes sure that the string can hold at least the characteristic
+    
         long long decimalPrecision = 1;
         for (int i = 0; i < len  - (count_digit(summedCharacteristic) + 1); i++){ //this sets decimal precision i.e. how many numbers we want after decimal point, this is determined by len parameter
             decimalPrecision = decimalPrecision * 10;
@@ -146,8 +148,6 @@ bool add(int c1, int n1, int d1, int c2, int n2, int d2, char result[], int len)
             }
             result[0] = '-'; 
         }
-
-        cout << result << endl;
 
 
         return true;
