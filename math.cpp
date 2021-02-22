@@ -13,7 +13,8 @@ bool subtract(int c1, int n1, int d1, int c2, int n2, int d2, char result[], int
 bool multiply(int c1, int n1, int d1, int c2, int n2, int d2, char result[], int len)
 {
     //creates an area to store the decimals in
-    int Mdecimal[];
+    char Mdecimal[len];
+    char Mwhole[len];
 
     //Creates the improper fraction for both numbers
     int Mfraction1 = (c1 * d1) + n1;
@@ -37,9 +38,18 @@ bool multiply(int c1, int n1, int d1, int c2, int n2, int d2, char result[], int
         }
         else {
             Mdecimal[i] = Mremainder / c2;
-            Mremainder = Mremainder % c2;
+            Mremainder = sprintf(char_rem, "%d", (Mremainder % c2));
             i++;
         }
+
+    result[0] = sprintf(char_num, "%d", Mnumber);
+
+    int l = 0;
+    for (int k = 1, k < len, k++) {
+        result[k] = Mdecimal[l];
+        l++;
+    }
+     
 
     return true;
 }
@@ -47,7 +57,8 @@ bool multiply(int c1, int n1, int d1, int c2, int n2, int d2, char result[], int
 bool divide(int c1, int n1, int d1, int c2, int n2, int d2, char result[], int len)
 {
     //creates an area to store the decimals in
-    int Ddecimal[];
+    char Ddecimal[len];
+    char Mwhole[len];
 
     //Creates the improper fraction for both numbers
     int Dfraction1 = (c1 * d1) + n1;
@@ -71,10 +82,16 @@ bool divide(int c1, int n1, int d1, int c2, int n2, int d2, char result[], int l
         }
         else {
             Ddecimal[i] = Dremainder / c2;
-            Dremainder = Dremainder % c2;
+            Dremainder = sprintf(char_rem, "%d", (Dremainder % c2));
             i++;
         }
 
+    result[0] = sprintf(char_num, "%d", Dnumber);
+    int l = 0;
+    for (int k = 1, k < len, k++) {
+        result[k] = Ddecimal[l];
+        l++;
+    }
 
     return true;
 }
