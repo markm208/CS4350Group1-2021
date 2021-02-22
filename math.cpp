@@ -38,11 +38,11 @@ bool multiply(int c1, int n1, int d1, int c2, int n2, int d2, char result[], int
         }
         else {
             Mdecimal[i] = Mremainder / c2;
-            Mremainder = sprintf(char_rem, "%d", (Mremainder % c2));
+            //Mremainder = 
             i++;
         }
 
-    result[0] = sprintf(char_num, "%d", Mnumber);
+    //result[0] = 
 
     int l = 0;
     for (int k = 1, k < len, k++) {
@@ -82,11 +82,11 @@ bool divide(int c1, int n1, int d1, int c2, int n2, int d2, char result[], int l
         }
         else {
             Ddecimal[i] = Dremainder / c2;
-            Dremainder = sprintf(char_rem, "%d", (Dremainder % c2));
+            //Dremainder 
             i++;
         }
 
-    result[0] = sprintf(char_num, "%d", Dnumber);
+    //result[0] = 
     int l = 0;
     for (int k = 1, k < len, k++) {
         result[k] = Ddecimal[l];
