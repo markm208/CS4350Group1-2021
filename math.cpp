@@ -123,7 +123,7 @@ bool add(int c1, int n1, int d1, int c2, int n2, int d2, char result[], int len)
             }
         }
         else { //this deals with decimals that terminate before they reach len argument
-            for (int i = len - 1; i >= 0 + 1; i--){
+            for (int i = len - 1; i >= 1; i--){
                 if (result[i] != '0'){
                     result[i + 1] = '\0';
                     break;
@@ -139,7 +139,7 @@ bool add(int c1, int n1, int d1, int c2, int n2, int d2, char result[], int len)
                 result[0] = temp;
 
                 if (result[i + 1] == '\0'){
-                    nullCharacterPosition = i + 1; //perserve this position so we can put end of decimal here if len accomidates it
+                    nullCharacterPosition = i + 1; //perserve this position so we can the last digit of the decimal here if len accomidates it
                 } 
             }
             if (findStringLength(result) + 1 <= len) { //plus 1 to accomidate for the negative sign we are adding to the beginning
