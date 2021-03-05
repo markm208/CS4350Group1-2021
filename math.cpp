@@ -55,9 +55,25 @@ int findStringLength(char str[]){ //returns the number of characters in the stri
     return length + 1; //adds one because I want to know the length with the '\0' 
 }
 
+bool canAddWithoutOverflow(int num1, int num2)
+{
+    bool retVal = true;
+    if (num1 > 0 && num2 > 0 && num1 + num2 < 0){
+        retVal = false;
+    }
+    if (num1 < 0 && num2 < 0 && num1 + num2 > 0){
+        retVal = false;
+    }
+    return retVal;
+}
+
 bool add(int c1, int n1, int d1, int c2, int n2, int d2, char result[], int len)
 {
+        
         if (d1 == 0 || d2 == 0){
+            return false;
+        }
+        if (!canAddWithoutOverflow(c1, c2)){ //this is a bug
             return false;
         }
 
@@ -81,20 +97,28 @@ bool add(int c1, int n1, int d1, int c2, int n2, int d2, char result[], int len)
 
         int summedNumerator = improperNumerator1 + improperNumerator2; //add up the numerators and then split up mantissa and characteristic again, but the two numbers are added together
         int summedCharacteristic = summedNumerator / commonDenominator; 
-        long long summedMantissa = summedNumerator % commonDenominator;
+        unsigned long long summedMantissa = abs(summedNumerator) % commonDenominator;
+
 
         if (summedNumerator < 0){ 
             resultIsNegative = true;
         }
-
+        
     if (count_digit(summedCharacteristic) < len) { //makes sure that the string can hold at least the characteristic
     
-        long long decimalPrecision = 1;
+        if(summedNumerator == 0){ //if the answer is zero edge case
+            result[0] = '0';
+            result[1] = '\0';
+            return true;
+        }
+
+        unsigned long long decimalPrecision = 1;
         for (int i = 0; i < len  - (count_digit(summedCharacteristic) + 1); i++){ //this sets decimal precision i.e. how many numbers we want after decimal point, this is determined by len parameter
             decimalPrecision = decimalPrecision * 10;
         }
-
-        long long mantissaDecimalFormat = summedMantissa * (decimalPrecision / commonDenominator); //this will be zero if previous for loop never looped
+        decimalPrecision *= 10;
+        unsigned long long mantissaDecimalFormat = summedMantissa * (decimalPrecision / commonDenominator); //this will be zero if previous for loop never looped
+        mantissaDecimalFormat /= 10;
         
 
         int characteristicStart;
