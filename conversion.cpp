@@ -2,6 +2,113 @@
 
 using namespace std;
 
+
+//helper function to check whether the input is numbers. if it's not it returns false
+bool inputVal(const char numString[])
+{
+    int pos = 0;
+    bool validinp = true;
+    char currchar;
+
+    while (numString[pos] != '\0')
+    {
+        currchar = numString[pos];
+
+        if (currchar == '0')
+        {
+            pos++;
+            continue;
+        }
+
+        else if (currchar == '1')
+        {
+            pos++;
+            continue;
+        }
+
+        else if (currchar == '2')
+        {
+            pos++;
+            continue;
+        }
+
+        else if (currchar == '3')
+        {
+            pos++;
+            continue;
+        }
+
+        else if (currchar == '4')
+        {
+            pos++;
+            continue;
+        }
+
+        else if (currchar =='5')
+        {
+            pos++;
+            continue;
+        }
+
+        else if (currchar == '6')
+        {
+            pos++;
+            continue;
+        }
+
+        else if (currchar == '7')
+        {
+            pos++;
+            continue;
+        }
+
+        else if (currchar == '8')
+        {
+            pos++;
+            continue;
+        }
+
+        else if (currchar == '9')
+        {
+            pos++;
+            continue;
+        }
+
+        else if (currchar = ' ')
+        {
+            pos++;
+            continue;
+        }
+
+        else if (currchar == '.')
+        {
+            pos++;
+            continue;
+        }
+
+        else if (currchar == '+')
+        {
+            pos++;
+            continue;
+        }
+
+        else if (currchar == '-')
+        {
+            pos++;
+            continue;
+        }
+
+        else 
+        {
+            validinp = false;
+            break;
+        }
+    }
+
+    return validinp;
+}
+
+
 //Helper function to find the position of the decimal point inside numString. 
 int pointOfDec(const char numString[])
 {
@@ -38,14 +145,7 @@ bool characteristic(const char numString[], int& c)
 
 
     //as long as the result is higher than one, the bool is true. If not, false.
-    if (c > 1)
-    {
-        return true;
-    }
-    else
-    {
-        return false;
-    }
+    return (inputVal(numString));
 }
 //--
 bool mantissa(const char numString[], int& numerator, int& denominator)
