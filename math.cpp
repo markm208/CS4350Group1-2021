@@ -61,6 +61,12 @@ bool add(int c1, int n1, int d1, int c2, int n2, int d2, char result[], int len)
             return false;
         }
 
+        if (c1 < 0 && n1 > 0){ //must set the numerator negative if the characteristic is negative to allow for proper calculation of improper fraction
+            n1 = -n1;
+        }
+        if (c2 < 0 && n2 > 0){
+            n2 = -n2;
+        }
 
         bool resultIsNegative = false; //stores whether or not number is negative so to allow for addition of - to the beginning of the string
 
