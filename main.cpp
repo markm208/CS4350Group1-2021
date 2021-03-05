@@ -13,12 +13,12 @@ int main() //this main is for debugging because the other functions in the defau
     int c2, n2, d2;
     
     c1 = 1;
-    n1 = 1;
-    d1 = 2;
+    n1 = 0;
+    d1 = 10;
     
-    c2 = 2;
-    n2 = 2;
-    d2 = 3; 
+    c2 = 1;
+    n2 = 1;
+    d2 = 2; 
     
     //if the C string could hold at least the characteristic
     if(add(c1, n1, d1, c2, n2, d2, answer, 10))
