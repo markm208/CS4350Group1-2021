@@ -99,7 +99,6 @@ bool add(int c1, int n1, int d1, int c2, int n2, int d2, char result[], int len)
         int summedCharacteristic = summedNumerator / commonDenominator; 
         unsigned long long summedMantissa = abs(summedNumerator) % commonDenominator;
 
-
         if (summedNumerator < 0){ 
             resultIsNegative = true;
         }
@@ -116,9 +115,14 @@ bool add(int c1, int n1, int d1, int c2, int n2, int d2, char result[], int len)
         for (int i = 0; i < len  - (count_digit(summedCharacteristic) + 1); i++){ //this sets decimal precision i.e. how many numbers we want after decimal point, this is determined by len parameter
             decimalPrecision = decimalPrecision * 10;
         }
-        decimalPrecision *= 10;
+        if(!resultIsNegative){
+            decimalPrecision *= 10;
+        }
         unsigned long long mantissaDecimalFormat = summedMantissa * (decimalPrecision / commonDenominator); //this will be zero if previous for loop never looped
-        mantissaDecimalFormat /= 10;
+        if(!resultIsNegative){
+            decimalPrecision /= 10;
+            mantissaDecimalFormat /= 10;
+        }
         
 
         int characteristicStart;
@@ -189,7 +193,7 @@ bool add(int c1, int n1, int d1, int c2, int n2, int d2, char result[], int len)
 //--
 bool subtract(int c1, int n1, int d1, int c2, int n2, int d2, char result[], int len) 
 {
-    return add(c1,n1,d1,-c2,-n2,d2,result,len); //subtract the second number passed in from the first number, just used add then reversed the sign of the second number
+    return add(c1,n1,d1,-c2,n2,d2,result,len); //subtract the second number passed in from the first number, just used add then reversed the sign of the second number
 }
 //--
 bool multiply(int c1, int n1, int d1, int c2, int n2, int d2, char result[], int len)
